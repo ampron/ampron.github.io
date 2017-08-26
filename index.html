@@ -1,9 +1,31 @@
+<!DOCTYPE html>
 <html>
 
+<head>
+  <meta charset="utf-8" />
+  <title>Loading Rust code</title>
+  <link rel="stylesheet" href=""/>
+</head>
+
 <body>
+<script type='text/javascript'>
+  var Module = {};
+
+  fetch('main.wasm')
+  .then(response => response.arrayBuffer())
+  .then(buffer => {
+    Module.wasmBinary = buffer;
+
+    var script = document.createElement('script');
+    script.src = "main.js";
+    script.onload = function() {
+      console.log("Emscripten boilerplate loaded.")
+    }
+    document.body.appendChild(script);
+  });
+</script>
   
-  <p>Hello from Github.io!</p>
-  
+<p>Hello from Github.io!</p>
 </body>
 
 </html>
